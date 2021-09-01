@@ -1,22 +1,26 @@
 package br.com.mercury.coinmarketapi.di
 
-import br.com.mercury.coinmarketapi.network.ApiInterceptor
+import androidx.room.Room
+import br.com.mercury.coinmarketapi.data.local.CoinMarketDatabase
 import br.com.mercury.coinmarketapi.network.CoinMarketApi
 import br.com.mercury.coinmarketapi.repository.CoinMarketRepository
 import br.com.mercury.coinmarketapi.repository.CoinMarketRepositoryImpl
-import com.facebook.stetho.okhttp3.StethoInterceptor
+import br.com.mercury.coinmarketapi.utils.dbName
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 val coinMarketApi = module {
-    factory { ApiInterceptor() }
     factory { provideRetrofit(get()) }
     single { provideCoinMarketApi(get()) }
-    factory<CoinMarketRepository> { CoinMarketRepositoryImpl(get()) }
+    single {
+        Room.databaseBuilder(androidContext(), CoinMarketDatabase::class.java, dbName)
+            .build()
+    }
+    factory<CoinMarketRepository> { CoinMarketRepositoryImpl(get(), get()) }
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {

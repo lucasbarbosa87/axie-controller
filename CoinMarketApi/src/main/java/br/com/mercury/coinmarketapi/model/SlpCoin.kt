@@ -1,20 +1,16 @@
 package br.com.mercury.coinmarketapi.model
 
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+
 data class SlpCoin(
-    val circulating_supply: Int,
-    val cmc_rank: Int,
-    val date_added: String,
-    val id: Int,
-    val is_active: Int,
-    val is_fiat: Int,
-    val last_updated: String,
-    val max_supply: Any,
-    val name: String,
-    val num_market_pairs: Int,
-    val platform: Platform,
-    val quote: Quote,
-    val slug: String,
-    val symbol: String,
-    val tags: List<String>,
-    val total_supply: Int
+    @SerializedName("name") val name: String,
+    @SerializedName("symbol") val symbol: String,
+    @SerializedName("is_active") val isActive: Int,
+    @SerializedName("last_updated") val lastUpdated: String,
+    @SerializedName("quote") val quote: QuoteData
+)
+
+data class QuoteData(
+    @SerializedName("ETH") val quote: ETH
 )

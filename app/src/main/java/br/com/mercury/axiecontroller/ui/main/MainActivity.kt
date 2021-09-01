@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUp() {
         binding.test.setOnClickListener {
-//            viewModel.testeApi()
+            viewModel.testeApi()
             onClick(it)
         }
     }

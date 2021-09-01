@@ -1,5 +1,6 @@
 package br.com.mercury.coinmarketapi.network
 
+import br.com.mercury.coinmarketapi.data.network.model.Coin
 import br.com.mercury.coinmarketapi.model.Account
 import br.com.mercury.coinmarketapi.model.AccountInfo
 import br.com.mercury.coinmarketapi.model.SlpCoin
@@ -12,10 +13,11 @@ interface CoinMarketApi {
     suspend fun getAccountInfo(): Account
 
     @GET("cryptocurrency/quotes/latest")
+    @Headers(headerCoinMarket)
     suspend fun getSlpInfo(
         @Query("symbol") symbol: String = "slp",
         @Query("convert") convert: String = "eth"
-    ): SlpCoin
+    ): Coin
 
 
     companion object {
