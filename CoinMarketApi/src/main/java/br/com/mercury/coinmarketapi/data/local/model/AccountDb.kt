@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import br.com.mercury.coinmarketapi.model.AccountInfo
+import br.com.mercury.coinmarketapi.utils.accountKey
 import java.util.*
 
 @Entity(tableName = "Account")
@@ -22,7 +23,7 @@ data class AccountDb(
     @ColumnInfo(name = "creditsUsedMonth") val creditsUsedMonth: Int
 ) {
     constructor(accountInfo: AccountInfo) : this(
-        accountId = UUID.randomUUID().toString(),
+        accountId = accountKey,
         creditLimitDaily = accountInfo.plan.creditLimitDaily,
         creditLimitMonthly = accountInfo.plan.creditLimitMonthly,
         creditLimitResetDaily = accountInfo.plan.creditLimitResetDaily,

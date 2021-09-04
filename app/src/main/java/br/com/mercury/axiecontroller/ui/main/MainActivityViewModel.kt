@@ -20,7 +20,7 @@ class MainActivityViewModel(
     fun testeApi() {
         viewModelScope.launch {
             testeAxie()
-            coinMarketRepository.getAccountInfo(success = {
+            coinMarketRepository.getSlpValue(success = {
                 Log.i("teste", objectToJson(it))
             }, failure = {
                 Log.i("teste", it.toString())
