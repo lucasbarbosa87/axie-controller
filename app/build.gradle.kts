@@ -45,7 +45,6 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = composeVersion
-
     }
     packagingOptions {
         resources {
@@ -72,9 +71,10 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02")
 
     implementation("com.google.android.gms:play-services-safetynet:17.0.1")
-    implementation ("com.android.volley:volley:1.2.1")
+    implementation("com.android.volley:volley:1.2.1")
     roomDb()
     koin()
     retrofit(ConfigurationType.Implementation)

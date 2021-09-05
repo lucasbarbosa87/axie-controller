@@ -12,21 +12,20 @@ import kotlinx.coroutines.launch
 class MainActivityViewModel(
     application: Application,
     private val gameApiRepository: GameApiRepository,
-    private val coinMarketRepository: CoinMarketRepository
 ) :
     AndroidViewModel(application) {
 
 
-    fun testeApi() {
-        viewModelScope.launch {
-            testeAxie()
-            coinMarketRepository.getSlpValue(success = {
-                Log.i("teste", objectToJson(it))
-            }, failure = {
-                Log.i("teste", it.toString())
-            })
-        }
-    }
+//    fun testeApi() {
+//        viewModelScope.launch {
+//            testeAxie()
+//            coinMarketRepository.getSlpValue(success = {
+//                Log.i("teste", objectToJson(it))
+//            }, failure = {
+//                Log.i("teste", it.toString())
+//            })
+//        }
+//    }
 
     suspend fun testeAxie() {
         gameApiRepository.getAccountSlp(
