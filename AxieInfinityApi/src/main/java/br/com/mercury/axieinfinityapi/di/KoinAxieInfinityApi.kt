@@ -35,7 +35,7 @@ fun gameApiProvider(okHttpClient: OkHttpClient): Retrofit {
 
 fun axieApiProvider(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
-        .baseUrl("https://axieinfinity.com/graphql-server-v2/")
+        .baseUrl("https://graphql-gateway.axieinfinity.com/")
         .client(okHttpClient)
         .addConverterFactory(getJsonConverter())
         .build()

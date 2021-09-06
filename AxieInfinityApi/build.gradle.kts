@@ -42,4 +42,6 @@ dependencies {
     retrofit(ConfigurationType.Api)
     stetho(ConfigurationType.Api)
     koin()
+    implementation("com.facebook.stetho:stetho:1.5.1")
+    implementation("com.facebook.stetho:stetho-okhttp3:1.5.1")
 }
