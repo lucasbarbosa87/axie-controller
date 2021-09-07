@@ -7,6 +7,7 @@ data class AxieProfileBriefResponse(
 )
 
 data class AxieProfile(
+    @SerializedName("accountId") val accountId: String,
     @SerializedName("addresses") val adress: AxieProfileAdress,
     @SerializedName("name") val name: String,
     @SerializedName("email") val email: String

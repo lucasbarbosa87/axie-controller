@@ -19,4 +19,6 @@ interface GameApiRepository {
         sort: String = "PriceAsc",
         auctionType: String = ""
     )
+
+    suspend fun setBearerToken(value: String)
 }

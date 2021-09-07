@@ -1,5 +1,8 @@
 package br.com.mercury.axieinfinityapi.di
 
+import androidx.room.Room
+import br.com.mercury.axieinfinityapi.data.local.AxieDatabase
+import br.com.mercury.axieinfinityapi.data.preferences.AxiePreferences
 import br.com.mercury.axieinfinityapi.repository.GameApiRepository
 import br.com.mercury.axieinfinityapi.repository.GameApiRepositoryImpl
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -14,7 +17,12 @@ import java.util.concurrent.TimeUnit
 
 val axieInfinityApi = module {
     factory { provideOkHttpClient() }
-    single<GameApiRepository> { GameApiRepositoryImpl(get()) }
+    single { AxiePreferences(androidContext()) }
+    single {
+        Room.databaseBuilder(androidContext(), AxieDatabase::class.java, "axie.db")
+            .build()
+    }
+    single<GameApiRepository> { GameApiRepositoryImpl(get(), get(), get()) }
 }
 
 fun provideOkHttpClient(): OkHttpClient {

@@ -1,8 +1,11 @@
 package br.com.mercury.axieinfinityapi.repository
 
 import android.util.Log
+import br.com.mercury.axieinfinityapi.data.local.AxieDatabase
+import br.com.mercury.axieinfinityapi.data.local.model.AccountDb
 import br.com.mercury.axieinfinityapi.data.network.AxieBriefListResponse
 import br.com.mercury.axieinfinityapi.data.network.AxieProfileBriefResponse
+import br.com.mercury.axieinfinityapi.data.preferences.AxiePreferences
 import br.com.mercury.axieinfinityapi.di.axieApiProvider
 import br.com.mercury.axieinfinityapi.di.gameApiProvider
 import br.com.mercury.axieinfinityapi.model.ItemModel
@@ -17,18 +20,25 @@ import okhttp3.RequestBody
 import org.json.JSONObject
 import kotlin.math.log
 
-class GameApiRepositoryImpl(okHttpClient: OkHttpClient) : GameApiRepository {
+class GameApiRepositoryImpl(
+    okHttpClient: OkHttpClient,
+    private val preferences: AxiePreferences,
+    private val database: AxieDatabase
+) : GameApiRepository {
 
     private val client = gameApiProvider(okHttpClient).create(GameApi::class.java)
     private val clientAxie = axieApiProvider(okHttpClient).create(AxieApi::class.java)
 
     private val apiFunctions = AxieApiFunctions()
 
-    override suspend fun getProfileBrief(tokenBearer: String) {
+    override suspend fun getProfileBrief(tokenBearer1: String) {
         try {
+            val tokenBearer = getBearerToken()
             val bodyJson = apiFunctions.profileBrief()
             val result = clientAxie.graphqlPostWithBearer(bodyJson, "Bearer $tokenBearer")
             val data = jsonToObject<AxieProfileBriefResponse>(result.data.toString())
+            val account = AccountDb(data)
+            database.accountDao().insertOrUpdateAccount(account)
             Log.d("bla", data.profile.email)
         } catch (ex: Exception) {
             Log.d("bla", ex.toString())
@@ -64,5 +74,12 @@ class GameApiRepositoryImpl(okHttpClient: OkHttpClient) : GameApiRepository {
         }
     }
 
+    private fun getBearerToken(): String {
+        return preferences.getBearerToken()
+    }
+
+    override suspend fun setBearerToken(value: String) {
+        preferences.setBearerToken(value)
+    }
 
 }

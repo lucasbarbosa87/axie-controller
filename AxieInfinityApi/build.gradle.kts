@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -42,6 +43,9 @@ dependencies {
     retrofit(ConfigurationType.Api)
     stetho(ConfigurationType.Api)
     koin()
+    roomDb()
     implementation("com.facebook.stetho:stetho:1.5.1")
     implementation("com.facebook.stetho:stetho-okhttp3:1.5.1")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
 }
