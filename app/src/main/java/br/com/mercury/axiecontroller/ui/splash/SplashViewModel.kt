@@ -13,7 +13,7 @@ class SplashViewModel(
     fun initialize(finish: () -> Unit) {
         viewModelScope.launch {
             coinMarketRepository.getAccountInfoNetwork()
-            coinMarketRepository.getSmoothLovePotionValueNetwork()
+//            coinMarketRepository.getSmoothLovePotionValueNetwork()
             finish()
         }
     }

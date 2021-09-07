@@ -75,6 +75,14 @@ fun DependencyHandler.firebase(configurationType: ConfigurationType, withAuth: B
 //    add("implementation", "com.google.firebase:firebase-ml-vision:24.1.0")
 }
 
+fun DependencyHandler.cameraX(configurationType: ConfigurationType) {
+
+    // The following line is optional, as the core library is included indirectly by camera-camera2
+    add(configurationType.value, "androidx.camera:camera-core:${Versions.cameraxVersion}")
+    add(configurationType.value, "androidx.camera:camera-camera2:${Versions.cameraxVersion}")
+    // If you want to additionally use the CameraX Lifecycle library
+    add(configurationType.value, "androidx.camera:camera-lifecycle:${Versions.cameraxVersion}")
+}
 
 
 enum class ConfigurationType(val value: String) {

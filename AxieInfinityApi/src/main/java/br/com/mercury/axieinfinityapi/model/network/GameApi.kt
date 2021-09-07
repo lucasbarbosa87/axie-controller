@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface GameApi {
+internal interface GameApi {
     @GET("clients/{clientId}/items/{itemId}")
     suspend fun getItemInfo(
         @Path("clientId") clientId: String,

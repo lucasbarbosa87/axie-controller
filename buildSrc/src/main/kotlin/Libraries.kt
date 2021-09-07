@@ -82,4 +82,5 @@ object Versions {
     const val gsonVersion = "2.8.7"
     const val paging = "3.0.0-beta01"
     const val stethoVersion = "1.5.1"
+    const val cameraxVersion = "1.0.1"
 }

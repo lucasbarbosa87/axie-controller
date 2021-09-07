@@ -4,6 +4,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-parcelize")
     id("kotlin-kapt")
+    kotlin("plugin.serialization") version "1.5.20"
 }
 
 android {
@@ -77,6 +78,7 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     roomDb()
     koin()
+    cameraX(ConfigurationType.Implementation)
     retrofit(ConfigurationType.Implementation)
 
 }

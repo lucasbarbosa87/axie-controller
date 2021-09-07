@@ -1,15 +1,23 @@
 package br.com.mercury.axieinfinityapi.model.network
 
-import br.com.mercury.axieinfinityapi.model.ItemModel
+import br.com.mercury.axieinfinityapi.data.network.AxieResponse
 import com.google.gson.JsonObject
-import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.Headers
+import retrofit2.http.POST
 
-interface AxieApi {
+internal interface AxieApi {
     @POST("graphql")
     @Headers("Content-Type: application/json")
-    suspend fun getProfileInfo(
+    suspend fun graphqlPost(
+        @Body bodyJson: JsonObject,
+    ): AxieResponse
+
+    @POST("graphql")
+    @Headers("Content-Type: application/json")
+    suspend fun graphqlPostWithBearer(
         @Body clientId: JsonObject,
-    ): String
+        @Header("Authorization") authString: String
+    ): AxieResponse
 }

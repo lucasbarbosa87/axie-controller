@@ -47,6 +47,7 @@ dependencies {
     implementation(kotlin("reflect"))
     implementation("org.drewcarlson:coingecko:0.2.2")
 
+
     val ktor_version = "1.6.3"
 
     implementation("io.ktor:ktor-client-okhttp:$ktor_version")

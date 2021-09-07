@@ -9,4 +9,14 @@ interface GameApiRepository {
         success: (response: ItemModel) -> Unit,
         failure: (throwable: Throwable) -> Unit
     )
+
+    suspend fun getProfileBrief(tokenBearer: String)
+
+    suspend fun getAxieBriefList(
+        owner: String,
+        from: Int = 0,
+        size: Int = 24,
+        sort: String = "PriceAsc",
+        auctionType: String = ""
+    )
 }

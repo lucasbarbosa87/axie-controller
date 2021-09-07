@@ -6,7 +6,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.mercury.axieinfinityapi.repository.GameApiRepository
 import br.com.mercury.axieinfinityapi.utils.objectToJson
-import br.com.mercury.coinmarketapi.repository.CoinMarketRepository
 import kotlinx.coroutines.launch
 
 class MainActivityViewModel(
@@ -14,6 +13,18 @@ class MainActivityViewModel(
     private val gameApiRepository: GameApiRepository,
 ) :
     AndroidViewModel(application) {
+
+    fun teste() {
+        viewModelScope.launch {
+            gameApiRepository.getProfileBrief(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJh" +
+                        "Y2NvdW50SWQiOjIxOTQyODMsImFjdGl2YXRlZCI6dHJ1ZSwicm9uaW5BZGRyZXNzIjoiMHg1N2I4" +
+                        "NmI2OTUzZjA2MjY2ODQ1OTYxYmMzZWRkOTc0OTAyZjIwNGZjIiwiZXRoQWRkcmVzcyI6bnVsbCwi" +
+                        "aWF0IjoxNjMwOTU4NzgwLCJleHAiOjE2MzE1NjM1ODAsImlzcyI6IkF4aWVJbmZpbml0eSJ9.i47" +
+                        "MHzBl46A-J_QCttimu2pbGNDvBzwOYrGAQLjfctQ"
+            )
+        }
+    }
 
 
 //    fun testeApi() {
