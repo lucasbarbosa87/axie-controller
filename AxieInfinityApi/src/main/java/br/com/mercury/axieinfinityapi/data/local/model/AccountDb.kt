@@ -13,7 +13,7 @@ data class AccountDb(
     @ColumnInfo(name = "name") val name: String
 ) {
     constructor(accountInfo: AxieProfileBriefResponse) : this(
-        accountId = accountInfo.profile.accountId,
+        accountId = accountInfo.profile!!.accountId,
         roninAdress = accountInfo.profile.adress.ronin,
         email = accountInfo.profile.email,
         name = accountInfo.profile.name

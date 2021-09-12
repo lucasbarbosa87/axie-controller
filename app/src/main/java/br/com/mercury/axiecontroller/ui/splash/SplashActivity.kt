@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import br.com.mercury.axiecontroller.ui.login.LoginActivity
 import br.com.mercury.axiecontroller.ui.main.MainActivity
 import br.com.mercury.axiecontroller.ui.theme.AxieControllerTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,17 +20,27 @@ class SplashActivity : ComponentActivity() {
         setContent {
             AxieControllerTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    SplashScreen()
+                    SplashComponent()
                 }
             }
         }
         setUp()
     }
 
-    fun setUp() {
+    private fun setUp() {
         viewModel.initialize(finish = {
-            openMainActivity()
+            if (it) {
+                openMainActivity()
+            } else {
+                openLoginActivity()
+            }
         })
+    }
+
+    private fun openLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun openMainActivity() {

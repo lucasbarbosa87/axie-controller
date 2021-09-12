@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "735965509558",
+    "project_id": "axie-infinity-controller",
+    "storage_bucket": "axie-infinity-controller.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735965509558:android:013117a4c2cf5d22a1b317",
+        "android_client_info": {
+          "package_name": "br.com.mercury.axiecontroller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735965509558-rjcdaadcsuidqfd1mn43ajr0lo6vh3d0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHfaMnie58S2AVqZixq77OnOCQWpVgyNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735965509558-rjcdaadcsuidqfd1mn43ajr0lo6vh3d0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

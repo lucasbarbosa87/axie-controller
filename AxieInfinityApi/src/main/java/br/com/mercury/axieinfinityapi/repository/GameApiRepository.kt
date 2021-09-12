@@ -10,7 +10,7 @@ interface GameApiRepository {
         failure: (throwable: Throwable) -> Unit
     )
 
-    suspend fun getProfileBrief(tokenBearer: String)
+    suspend fun getProfileBrief(): Boolean
 
     suspend fun getAxieBriefList(
         owner: String,

@@ -31,17 +31,21 @@ class GameApiRepositoryImpl(
 
     private val apiFunctions = AxieApiFunctions()
 
-    override suspend fun getProfileBrief(tokenBearer1: String) {
-        try {
+    override suspend fun getProfileBrief(
+    ): Boolean {
+        return try {
             val tokenBearer = getBearerToken()
             val bodyJson = apiFunctions.profileBrief()
             val result = clientAxie.graphqlPostWithBearer(bodyJson, "Bearer $tokenBearer")
             val data = jsonToObject<AxieProfileBriefResponse>(result.data.toString())
+            if(data.profile == null){
+                throw Exception("Profile not found")
+            }
             val account = AccountDb(data)
             database.accountDao().insertOrUpdateAccount(account)
-            Log.d("bla", data.profile.email)
+            true
         } catch (ex: Exception) {
-            Log.d("bla", ex.toString())
+            throw ex
         }
     }
 

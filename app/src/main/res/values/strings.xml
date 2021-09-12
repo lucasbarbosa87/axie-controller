@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">My App</string>
+    <string name="app_name">Axie Controller</string>
+    <string name="qr_code_error">Não foi possivel reconhecer o QR Code</string>
 </resources>

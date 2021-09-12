@@ -25,7 +25,7 @@ val axieInfinityApi = module {
     single<GameApiRepository> { GameApiRepositoryImpl(get(), get(), get()) }
 }
 
-fun provideOkHttpClient(): OkHttpClient {
+internal fun provideOkHttpClient(): OkHttpClient {
     return OkHttpClient().newBuilder()
         .addNetworkInterceptor(StethoInterceptor())
         .connectTimeout(30, TimeUnit.SECONDS)
@@ -33,7 +33,7 @@ fun provideOkHttpClient(): OkHttpClient {
         .writeTimeout(30, TimeUnit.SECONDS).build()
 }
 
-fun gameApiProvider(okHttpClient: OkHttpClient): Retrofit {
+internal fun gameApiProvider(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl("https://game-api.skymavis.com/game-api/")
         .client(okHttpClient)
@@ -41,7 +41,7 @@ fun gameApiProvider(okHttpClient: OkHttpClient): Retrofit {
         .build()
 }
 
-fun axieApiProvider(okHttpClient: OkHttpClient): Retrofit {
+internal fun axieApiProvider(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl("https://graphql-gateway.axieinfinity.com/")
         .client(okHttpClient)

@@ -5,6 +5,8 @@ plugins {
     id("kotlin-parcelize")
     id("kotlin-kapt")
     kotlin("plugin.serialization") version "1.5.20"
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -78,7 +80,10 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     roomDb()
     koin()
-    cameraX(ConfigurationType.Implementation)
     retrofit(ConfigurationType.Implementation)
+    implementation(platform("com.google.firebase:firebase-bom:28.4.0"))
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
+    implementation("com.journeyapps:zxing-android-embedded:4.2.0")
+
 
 }

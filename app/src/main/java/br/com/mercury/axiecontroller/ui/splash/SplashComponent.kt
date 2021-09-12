@@ -12,15 +12,16 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import br.com.mercury.axiecontroller.R
 
+
 @Composable
-@Preview()
-fun SplashScreen() {
+@Preview
+fun SplashComponent() {
     ConstraintLayout(
         modifier = Modifier.fillMaxSize()
     ) {
         val (logo) = createRefs()
         Image(
-            painter = painterResource(id = R.drawable.logo),
+            painter = painterResource(id = R.drawable.logo_controller),
             contentDescription = "",
             modifier = Modifier
                 .constrainAs(
@@ -35,5 +36,4 @@ fun SplashScreen() {
                 .size(128.dp, 128.dp)
         )
     }
-
 }

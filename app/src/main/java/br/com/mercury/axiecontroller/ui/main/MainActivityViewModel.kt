@@ -16,13 +16,11 @@ class MainActivityViewModel(
 
     fun teste() {
         viewModelScope.launch {
-            gameApiRepository.getProfileBrief(
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJh" +
-                        "Y2NvdW50SWQiOjIxOTQyODMsImFjdGl2YXRlZCI6dHJ1ZSwicm9uaW5BZGRyZXNzIjoiMHg1N2I4" +
-                        "NmI2OTUzZjA2MjY2ODQ1OTYxYmMzZWRkOTc0OTAyZjIwNGZjIiwiZXRoQWRkcmVzcyI6bnVsbCwi" +
-                        "aWF0IjoxNjMwOTU4NzgwLCJleHAiOjE2MzE1NjM1ODAsImlzcyI6IkF4aWVJbmZpbml0eSJ9.i47" +
-                        "MHzBl46A-J_QCttimu2pbGNDvBzwOYrGAQLjfctQ"
-            )
+            try {
+                gameApiRepository.getProfileBrief()
+            } catch (ex: Exception) {
+                Log.i("teste", ex.toString())
+            }
         }
     }
 
