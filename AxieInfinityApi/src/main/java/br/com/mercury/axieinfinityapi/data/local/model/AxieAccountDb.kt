@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import br.com.mercury.axieinfinityapi.data.network.AxieProfileBriefResponse
 
 @Entity(tableName = "Account")
-data class AccountDb(
+data class AxieAccountDb(
     @PrimaryKey @ColumnInfo(name = "id") val accountId: String,
     @ColumnInfo(name = "roninAdress") val roninAdress: String,
     @ColumnInfo(name = "email") val email: String,

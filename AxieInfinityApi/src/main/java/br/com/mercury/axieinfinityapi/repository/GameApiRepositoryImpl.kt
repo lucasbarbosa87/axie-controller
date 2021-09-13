@@ -2,9 +2,10 @@ package br.com.mercury.axieinfinityapi.repository
 
 import android.util.Log
 import br.com.mercury.axieinfinityapi.data.local.AxieDatabase
-import br.com.mercury.axieinfinityapi.data.local.model.AccountDb
+import br.com.mercury.axieinfinityapi.data.local.model.AxieAccountDb
 import br.com.mercury.axieinfinityapi.data.network.AxieBriefListResponse
 import br.com.mercury.axieinfinityapi.data.network.AxieProfileBriefResponse
+import br.com.mercury.axieinfinityapi.data.network.EthExchangeRateResponse
 import br.com.mercury.axieinfinityapi.data.preferences.AxiePreferences
 import br.com.mercury.axieinfinityapi.di.axieApiProvider
 import br.com.mercury.axieinfinityapi.di.gameApiProvider
@@ -13,12 +14,7 @@ import br.com.mercury.axieinfinityapi.model.network.AxieApi
 import br.com.mercury.axieinfinityapi.model.network.AxieApiFunctions
 import br.com.mercury.axieinfinityapi.model.network.GameApi
 import br.com.mercury.axieinfinityapi.utils.jsonToObject
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import okhttp3.OkHttpClient
-import okhttp3.RequestBody
-import org.json.JSONObject
-import kotlin.math.log
 
 class GameApiRepositoryImpl(
     okHttpClient: OkHttpClient,
@@ -38,10 +34,10 @@ class GameApiRepositoryImpl(
             val bodyJson = apiFunctions.profileBrief()
             val result = clientAxie.graphqlPostWithBearer(bodyJson, "Bearer $tokenBearer")
             val data = jsonToObject<AxieProfileBriefResponse>(result.data.toString())
-            if(data.profile == null){
+            if (data.profile == null) {
                 throw Exception("Profile not found")
             }
-            val account = AccountDb(data)
+            val account = AxieAccountDb(data)
             database.accountDao().insertOrUpdateAccount(account)
             true
         } catch (ex: Exception) {
@@ -65,14 +61,28 @@ class GameApiRepositoryImpl(
         }
     }
 
+    override suspend fun getProfile(): AxieAccountDb = database.accountDao().getAccount()
+
+    override suspend fun getEthValue(): Double {
+        try {
+            val bodyJson = apiFunctions.ethExchangeRate()
+            val result = clientAxie.graphqlPost(bodyJson)
+            val data = jsonToObject<EthExchangeRateResponse>(result.data.toString())
+            return data.exchangeRate.eth.usd
+        } catch (ex: Exception) {
+            Log.d("bla", ex.toString())
+            return 0.0
+        }
+    }
+
 
     override suspend fun getAccountSlp(
-        accountId: String,
         success: (response: ItemModel) -> Unit,
         failure: (throwable: Throwable) -> Unit
     ) {
         try {
-            success(client.getItemInfo(accountId, "1"))
+            val roninAdress = getProfile().roninAdress
+            success(client.getItemInfo(roninAdress, "1"))
         } catch (ex: Exception) {
             failure(ex)
         }

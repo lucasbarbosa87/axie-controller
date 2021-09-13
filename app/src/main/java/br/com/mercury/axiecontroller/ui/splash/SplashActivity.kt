@@ -2,16 +2,16 @@ package br.com.mercury.axiecontroller.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import br.com.mercury.axiecontroller.ui.base.BaseActivity
 import br.com.mercury.axiecontroller.ui.login.LoginActivity
 import br.com.mercury.axiecontroller.ui.main.MainActivity
 import br.com.mercury.axiecontroller.ui.theme.AxieControllerTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SplashActivity : ComponentActivity() {
+class SplashActivity : BaseActivity() {
 
     private val viewModel: SplashViewModel by viewModel()
 

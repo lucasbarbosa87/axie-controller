@@ -18,16 +18,16 @@ class SplashViewModel(
     fun initialize(finish: (hasProfile: Boolean) -> Unit) {
         viewModelScope.launch {
             coinMarketRepository.getAccountInfoNetwork()
-//            axieRepository.setBearerToken(
-//                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOj" +
-//                        "IxOTQyODMsImFjdGl2YXRlZCI6dHJ1ZSwicm9uaW5BZGRyZXNzIjoiMHg1N2I4NmI2OTUzZjA2MjY" +
-//                        "2ODQ1OTYxYmMzZWRkOTc0OTAyZjIwNGZjIiwiZXRoQWRkcmVzcyI6bnVsbCwiaWF0IjoxNjMwOTU4" +
-//                        "NzgwLCJleHAiOjE2MzE1NjM1ODAsImlzcyI6IkF4aWVJbmZpbml0eSJ9.i47MHzBl46A-J_QCttim" +
-//                        "u2pbGNDvBzwOYrGAQLjfctQ"
-//            )
-//            axieRepository.getProfileBrief()
+            axieRepository.setBearerToken(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOj" +
+                        "IxOTQyODMsImFjdGl2YXRlZCI6dHJ1ZSwicm9uaW5BZGRyZXNzIjoiMHg1N2I4NmI2OTUzZjA2MjY" +
+                        "2ODQ1OTYxYmMzZWRkOTc0OTAyZjIwNGZjIiwiZXRoQWRkcmVzcyI6bnVsbCwiaWF0IjoxNjMwOTU4" +
+                        "NzgwLCJleHAiOjE2MzE1NjM1ODAsImlzcyI6IkF4aWVJbmZpbml0eSJ9.i47MHzBl46A-J_QCttim" +
+                        "u2pbGNDvBzwOYrGAQLjfctQ"
+            )
             try {
                 axieRepository.getProfileBrief()
+                coinMarketRepository.getSmoothLovePotionValueNetwork()
                 finish(true)
             } catch (ex: Exception) {
                 Log.i("teste", ex.toString())

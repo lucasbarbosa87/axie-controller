@@ -2,17 +2,40 @@ package br.com.mercury.axiecontroller.ui.main
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
+import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import br.com.mercury.axiecontroller.ui.base.BaseViewModel
 import br.com.mercury.axieinfinityapi.repository.GameApiRepository
 import br.com.mercury.axieinfinityapi.utils.objectToJson
+import br.com.mercury.coinmarketapi.repository.CoinMarketRepository
 import kotlinx.coroutines.launch
 
 class MainActivityViewModel(
     application: Application,
     private val gameApiRepository: GameApiRepository,
+    private val coinApiRepository: CoinMarketRepository
 ) :
-    AndroidViewModel(application) {
+    BaseViewModel(application) {
+
+    val profileValue = mutableStateOf(AccountValueView(0.0, 0, 0.0))
+    val message = MutableLiveData<String>()
+    val error = MutableLiveData<Throwable>()
+
+    fun getProfileValue() {
+        viewModelScope.launch {
+            gameApiRepository.getEthValue().let { ethValue ->
+                coinApiRepository.getSmoothLovePotionValueLocal().let { slpCoin ->
+                    gameApiRepository.getAccountSlp(success = {
+                        val accountValue = AccountValueView(slpCoin.price, it.totalItem, ethValue)
+                        profileValue.value = accountValue
+                    }, failure = {
+                        error.postValue(it)
+                    })
+                }
+            }
+        }
+    }
 
     fun teste() {
         viewModelScope.launch {
@@ -24,21 +47,8 @@ class MainActivityViewModel(
         }
     }
 
-
-//    fun testeApi() {
-//        viewModelScope.launch {
-//            testeAxie()
-//            coinMarketRepository.getSlpValue(success = {
-//                Log.i("teste", objectToJson(it))
-//            }, failure = {
-//                Log.i("teste", it.toString())
-//            })
-//        }
-//    }
-
     suspend fun testeAxie() {
         gameApiRepository.getAccountSlp(
-            "0x57b86b6953f06266845961bc3edd974902f204fc",
             success = {
                 Log.i("teste", objectToJson(it))
             },

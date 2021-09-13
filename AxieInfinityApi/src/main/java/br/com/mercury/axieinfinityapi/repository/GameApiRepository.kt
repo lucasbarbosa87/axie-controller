@@ -1,11 +1,11 @@
 package br.com.mercury.axieinfinityapi.repository
 
+import br.com.mercury.axieinfinityapi.data.local.model.AxieAccountDb
 import br.com.mercury.axieinfinityapi.model.ItemModel
 
 interface GameApiRepository {
 
     suspend fun getAccountSlp(
-        accountId: String,
         success: (response: ItemModel) -> Unit,
         failure: (throwable: Throwable) -> Unit
     )
@@ -20,5 +20,8 @@ interface GameApiRepository {
         auctionType: String = ""
     )
 
+    suspend fun getProfile(): AxieAccountDb
+
     suspend fun setBearerToken(value: String)
+    suspend fun getEthValue(): Double
 }

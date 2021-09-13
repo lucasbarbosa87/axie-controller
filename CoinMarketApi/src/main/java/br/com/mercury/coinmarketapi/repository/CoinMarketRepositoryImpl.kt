@@ -47,7 +47,7 @@ class CoinMarketRepositoryImpl(
         }
     }
 
-    private suspend fun getSmoothLovePotionValueLocal() =
+    override suspend fun getSmoothLovePotionValueLocal() =
         coinMarketDatabase.slpCoinDao().getSlpCoin()
 
     private suspend fun getAccountInfoLocal() = coinMarketDatabase.accountDao().getAccount()

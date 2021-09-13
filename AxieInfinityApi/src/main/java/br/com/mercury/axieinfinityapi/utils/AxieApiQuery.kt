@@ -1,7 +1,7 @@
 package br.com.mercury.axieinfinityapi.utils
 
 
-const val profileBriefQuery =
+internal const val profileBriefQuery =
     "query GetProfileBrief {  profile {    ...ProfileBrief    __typename  }}fragment ProfileBrief " +
             "on AccountProfile {  accountId  addresses {    ...Addresses    __typename  }  email  " +
             "activated  name  settings {    unsubscribeNotificationEmail    __typename  }  " +
@@ -9,7 +9,7 @@ const val profileBriefQuery =
             "ronin  __typename}"
 
 
-const val axieBriefListQuery = "query GetAxieBriefList(\$auctionType: AuctionType, " +
+internal const val axieBriefListQuery = "query GetAxieBriefList(\$auctionType: AuctionType, " +
         "\$criteria: AxieSearchCriteria, \$from: Int, \$sort: SortBy, \$size: Int, " +
         "\$owner: String) {  axies(auctionType: \$auctionType, criteria: \$criteria, " +
         "from: \$from, sort: \$sort, size: \$size, owner: \$owner) {    total    " +
@@ -18,3 +18,6 @@ const val axieBriefListQuery = "query GetAxieBriefList(\$auctionType: AuctionTyp
         "{    banned    __typename  }  auction {    currentPrice    currentPriceUSD    " +
         "__typename  }  parts {    id    name    class    type    specialGenes    " +
         "__typename  }  __typename}"
+
+internal const val newEthExchangeRate = "query NewEthExchangeRate {  exchangeRate {    " +
+        "eth {      usd      __typename    }    __typename  }}"

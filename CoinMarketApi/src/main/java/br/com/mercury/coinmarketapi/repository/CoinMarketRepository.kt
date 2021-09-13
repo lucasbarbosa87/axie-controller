@@ -8,4 +8,5 @@ interface CoinMarketRepository {
     suspend fun getAccountInfoNetwork()
     suspend fun getSmoothLovePotionValueNetwork()
     suspend fun overRideInformation()
+    suspend fun getSmoothLovePotionValueLocal(): SlpCoinDb
 }

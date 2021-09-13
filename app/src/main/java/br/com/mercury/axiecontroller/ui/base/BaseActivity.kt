@@ -35,5 +35,18 @@ open class BaseActivity : AppCompatActivity() {
             .show()
     }
 
+    fun onError(throws: Throwable) {
+        //TODO: Tratar os erros
+        var message = ""
+        message = throws.localizedMessage ?: "Não foi possivel identificar o erro."
+
+        showAlert(
+            "Alerta",
+            message,
+            "OK",
+            positiveButtonClickListener = { dialogInterface, _ -> dialogInterface.dismiss() },
+        )
+    }
+
 
 }

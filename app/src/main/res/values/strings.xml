@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Axie Controller</string>
     <string name="qr_code_error">Não foi possivel reconhecer o QR Code</string>
+    <string name="total_balance">Saldo</string>
+    <string name="eth_value">Valor do Ethereum</string>
+    <string name="slp_quantity">Total SLP</string>
 </resources>
