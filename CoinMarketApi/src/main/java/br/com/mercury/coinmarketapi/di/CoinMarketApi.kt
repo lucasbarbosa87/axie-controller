@@ -20,10 +20,10 @@ val coinMarketApi = module {
         Room.databaseBuilder(androidContext(), CoinMarketDatabase::class.java, dbName)
             .build()
     }
-    factory<CoinMarketRepository> { CoinMarketRepositoryImpl(get(), get()) }
+    factory<CoinMarketRepository> { CoinMarketRepositoryImpl(get(), get(), get()) }
 }
 
-fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl("https://pro-api.coinmarketcap.com/v1/")
         .client(okHttpClient)
@@ -36,5 +36,13 @@ private fun getJsonConverter(): GsonConverterFactory {
     return GsonConverterFactory.create(gsonFactory)
 }
 
-fun provideCoinMarketApi(retrofit: Retrofit): CoinMarketApi =
+internal fun provideCoinMarketApi(retrofit: Retrofit): CoinMarketApi =
     retrofit.create(CoinMarketApi::class.java)
+
+internal fun dollarApiProvider(okHttpClient: OkHttpClient): Retrofit {
+    return Retrofit.Builder()
+        .baseUrl("https://api.rates-history-service.prd.aws.ofx.com/")
+        .client(okHttpClient)
+        .addConverterFactory(getJsonConverter())
+        .build()
+}

@@ -64,6 +64,10 @@ object Libraries {
     const val stethoInterceptorOkHttp = "com.facebook.stetho:stetho:${Versions.stethoVersion}"
     const val stethoInterceptor = "com.facebook.stetho:stetho-okhttp3:${Versions.stethoVersion}"
 
+    const val constraintLayoutCompose = "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
+    const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.compose}"
+    const val materialIconsCore = "androidx.compose.material:material-icons-core:${Versions.compose}"
+
 }
 
 object Versions {
@@ -83,4 +87,5 @@ object Versions {
     const val paging = "3.0.0-beta01"
     const val stethoVersion = "1.5.1"
     const val cameraxVersion = "1.0.1"
+    const val compose = "1.0.1"
 }

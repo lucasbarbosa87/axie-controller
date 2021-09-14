@@ -62,7 +62,6 @@ fun LoginComponent(onLoginCLick: (() -> Unit)) {
 @Preview
 @Composable
 fun LoginomponentPreview() {
-
     LoginComponent(onLoginCLick = {
 
     })

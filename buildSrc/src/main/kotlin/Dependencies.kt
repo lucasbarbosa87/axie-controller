@@ -84,6 +84,12 @@ fun DependencyHandler.cameraX(configurationType: ConfigurationType) {
     add(configurationType.value, "androidx.camera:camera-lifecycle:${Versions.cameraxVersion}")
 }
 
+fun DependencyHandler.compose(configurationType: ConfigurationType) {
+    add(configurationType.value, Libraries.constraintLayoutCompose)
+    add(configurationType.value, Libraries.materialIconsCore)
+    add(configurationType.value, Libraries.materialIconsExtended)
+}
+
 
 enum class ConfigurationType(val value: String) {
     Implementation("implementation"), Api("api")

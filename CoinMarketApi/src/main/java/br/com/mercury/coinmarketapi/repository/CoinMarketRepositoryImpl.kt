@@ -3,17 +3,26 @@ package br.com.mercury.coinmarketapi.repository
 import br.com.mercury.coinmarketapi.data.local.CoinMarketDatabase
 import br.com.mercury.coinmarketapi.data.local.model.AccountDb
 import br.com.mercury.coinmarketapi.data.local.model.SlpCoinDb
+import br.com.mercury.coinmarketapi.data.network.model.DolarResponse
+import br.com.mercury.coinmarketapi.data.network.model.DollarData
+import br.com.mercury.coinmarketapi.di.provideRetrofit
 import br.com.mercury.coinmarketapi.model.AccountInfo
 import br.com.mercury.coinmarketapi.network.CoinMarketApi
+import br.com.mercury.coinmarketapi.network.DollarApi
+import com.google.gson.JsonObject
 import drewcarlson.coingecko.CoinGeckoClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
 import java.util.*
 
 class CoinMarketRepositoryImpl(
     private val coinMarketApi: CoinMarketApi,
-    private val coinMarketDatabase: CoinMarketDatabase
+    private val coinMarketDatabase: CoinMarketDatabase,
+    okHttpClient: OkHttpClient
 ) : CoinMarketRepository {
+
+    private val dollarApi = provideRetrofit(okHttpClient).create(DollarApi::class.java)
 
     override suspend fun getAccountInfoNetwork() {
         val accountInfo = coinMarketApi.getAccountInfo().accountInfo
@@ -35,6 +44,17 @@ class CoinMarketRepositoryImpl(
                 }
             }
         }
+    }
+
+    override suspend fun getDollarValue(): DollarData {
+        val jsonBody = JsonObject()
+        jsonBody.addProperty("method", "spotRateHistory")
+        val jsonData = JsonObject()
+        jsonData.addProperty("base", "USD")
+        jsonData.addProperty("base", "BRL")
+        jsonData.addProperty("period", "week")
+        jsonBody.addProperty("data", jsonData.toString())
+        return dollarApi.getDolarValue(jsonBody).data
     }
 
 

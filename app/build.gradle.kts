@@ -1,10 +1,10 @@
-val composeVersion = "1.0.0"
+val composeVersion = "1.0.1"
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-parcelize")
     id("kotlin-kapt")
-    kotlin("plugin.serialization") version "1.5.20"
+    kotlin("plugin.serialization") version "1.5.21"
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
 }
@@ -74,11 +74,12 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02")
 
     roomDb()
     koin()
     retrofit(ConfigurationType.Implementation)
+    compose(ConfigurationType.Implementation)
+
     implementation(platform("com.google.firebase:firebase-bom:28.4.0"))
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.journeyapps:zxing-android-embedded:4.2.0")
