@@ -58,4 +58,10 @@ class MainActivityViewModel(
 
     }
 
+    fun getAxieList(){
+        viewModelScope.launch {
+            gameApiRepository.getAxieBriefList("")
+        }
+    }
+
 }
