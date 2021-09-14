@@ -4,6 +4,7 @@ import android.util.Log
 import br.com.mercury.axieinfinityapi.data.local.AxieDatabase
 import br.com.mercury.axieinfinityapi.data.local.model.AxieAccountDb
 import br.com.mercury.axieinfinityapi.data.network.AxieBriefListResponse
+import br.com.mercury.axieinfinityapi.data.network.AxieListData
 import br.com.mercury.axieinfinityapi.data.network.AxieProfileBriefResponse
 import br.com.mercury.axieinfinityapi.data.network.EthExchangeRateResponse
 import br.com.mercury.axieinfinityapi.data.preferences.AxiePreferences
@@ -51,13 +52,15 @@ class GameApiRepositoryImpl(
         size: Int,
         sort: String,
         auctionType: String
-    ) {
+    ): AxieListData {
         try {
-            val bodyJson = apiFunctions.axieBriefList(owner, from, size, sort, auctionType)
+            val bodyJson =
+                apiFunctions.axieBriefList(getProfile().roninAdress, from, size, sort, auctionType)
             val result = clientAxie.graphqlPost(bodyJson)
             val data = jsonToObject<AxieBriefListResponse>(result.data.toString())
+            return data.axiesData
         } catch (ex: java.lang.Exception) {
-            Log.d("bla", ex.toString())
+            throw ex
         }
     }
 

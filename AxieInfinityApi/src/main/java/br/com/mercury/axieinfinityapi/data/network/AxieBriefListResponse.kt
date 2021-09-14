@@ -4,7 +4,7 @@ import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 
 data class AxieBriefListResponse(
-    @SerializedName("axie") val axiesData: JsonObject
+    @SerializedName("axie") val axiesData: AxieListData
 )
 
 data class AxieListData(
