@@ -14,6 +14,7 @@ import br.com.mercury.axiecontroller.ui.base.BaseActivity
 import br.com.mercury.axiecontroller.ui.main.components.AccountValueComponent
 import br.com.mercury.axiecontroller.ui.main.components.ListOfAxiesComponent
 import br.com.mercury.axiecontroller.ui.theme.AxieControllerTheme
+import br.com.mercury.axiecontroller.utils.AxieType
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity() {
@@ -47,5 +48,7 @@ class MainActivity : BaseActivity() {
         })
         viewModel.getProfileValue()
         viewModel.getAxieList()
+
+//        AxieType.builder("Dawn")
     }
 }

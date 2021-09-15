@@ -4,4 +4,14 @@
     <string name="total_balance">Saldo</string>
     <string name="eth_value">Valor do Ethereum</string>
     <string name="slp_quantity">Total SLP</string>
+
+    <string name="axie_type_aqua">Aqua</string>
+    <string name="axie_type_beast">Besta</string>
+    <string name="axie_type_bird">Passaro</string>
+    <string name="axie_type_bug">Inseto</string>
+    <string name="axie_type_dawn">Luz</string>
+    <string name="axie_type_dusk">Sombra</string>
+    <string name="axie_type_mech">Mecanico</string>
+    <string name="axie_type_plant">Planta</string>
+    <string name="axie_type_rept">Réptil</string>
 </resources>
