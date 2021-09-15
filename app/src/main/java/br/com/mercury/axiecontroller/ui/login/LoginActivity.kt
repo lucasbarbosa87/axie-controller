@@ -1,20 +1,16 @@
 package br.com.mercury.axiecontroller.ui.login
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.lifecycle.Observer
 import br.com.mercury.axiecontroller.ui.base.BaseActivity
 import br.com.mercury.axiecontroller.ui.main.MainActivity
 import br.com.mercury.axiecontroller.ui.theme.AxieControllerTheme
 import com.google.zxing.integration.android.IntentIntegrator
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class LoginActivity : BaseActivity() {
 

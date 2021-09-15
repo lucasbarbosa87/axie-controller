@@ -15,6 +15,8 @@ import br.com.mercury.axieinfinityapi.model.network.AxieApi
 import br.com.mercury.axieinfinityapi.model.network.AxieApiFunctions
 import br.com.mercury.axieinfinityapi.model.network.GameApi
 import br.com.mercury.axieinfinityapi.utils.jsonToObject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 
 class GameApiRepositoryImpl(
@@ -29,25 +31,26 @@ class GameApiRepositoryImpl(
     private val apiFunctions = AxieApiFunctions()
 
     override suspend fun getProfileBrief(
-    ): Boolean {
-        return try {
+        success: (response: AxieAccountDb) -> Unit,
+        failure: (throwable: Throwable) -> Unit
+    ) {
+        try {
             val tokenBearer = getBearerToken()
             val bodyJson = apiFunctions.profileBrief()
             val result = clientAxie.graphqlPostWithBearer(bodyJson, "Bearer $tokenBearer")
             val data = jsonToObject<AxieProfileBriefResponse>(result.data.toString())
             if (data.profile == null) {
-                throw Exception("Profile not found")
+                failure(Exception("Profile not found"))
             }
             val account = AxieAccountDb(data)
             database.accountDao().insertOrUpdateAccount(account)
-            true
+            success(account)
         } catch (ex: Exception) {
-            throw ex
+            Log.d("error", ex.toString())
         }
     }
 
     override suspend fun getAxieBriefList(
-        owner: String,
         from: Int,
         size: Int,
         sort: String,
@@ -56,6 +59,7 @@ class GameApiRepositoryImpl(
         try {
             val bodyJson =
                 apiFunctions.axieBriefList(getProfile().roninAdress, from, size, sort, auctionType)
+
             val result = clientAxie.graphqlPost(bodyJson)
             val data = jsonToObject<AxieBriefListResponse>(result.data.toString())
             return data.axiesData
@@ -64,7 +68,9 @@ class GameApiRepositoryImpl(
         }
     }
 
-    override suspend fun getProfile(): AxieAccountDb = database.accountDao().getAccount()
+    override suspend fun getProfile(): AxieAccountDb = runBlocking(Dispatchers.IO) {
+        database.accountDao().getAccount()
+    }
 
     override suspend fun getEthValue(): Double {
         try {

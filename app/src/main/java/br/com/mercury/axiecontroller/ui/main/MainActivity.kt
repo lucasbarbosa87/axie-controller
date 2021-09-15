@@ -32,13 +32,12 @@ class MainActivity : BaseActivity() {
                     ) {
                         AccountValueComponent(false, viewModel.profileValue)
                         Column(Modifier.fillMaxHeight()) {
-                            ListOfAxiesComponent(viewModel.getAxieList)
+                            ListOfAxiesComponent(viewModel.axiesList)
                         }
                     }
                 }
             }
         }
-        viewModel.getProfileValue()
         setUp()
     }
 
@@ -46,6 +45,7 @@ class MainActivity : BaseActivity() {
         viewModel.error.observe(this, {
             error(it)
         })
+        viewModel.getProfileValue()
         viewModel.getAxieList()
     }
 }

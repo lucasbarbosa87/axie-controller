@@ -22,14 +22,15 @@ class SplashViewModel(
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjIxOTQyODMsImFjdGl2YXRlZCI6dHJ1ZSwicm9uaW5BZGRyZXNzIjoiMHg1N2I4NmI2OTUzZjA2MjY2ODQ1OTYxYmMzZWRkOTc0OTAyZjIwNGZjIiwiZXRoQWRkcmVzcyI6bnVsbCwiaWF0IjoxNjMxMTQ0OTE3LCJleHAiOjE2MzE3NDk3MTcsImlzcyI6IkF4aWVJbmZpbml0eSJ9.3rDLIIn4ekMNBPgQgEDbPEkNAbeV596CsqX-wfpE8VM"
             )
             try {
-                axieRepository.getProfileBrief()
                 coinMarketRepository.getSmoothLovePotionValueNetwork()
-                finish(true)
+                axieRepository.getProfileBrief(success = {
+                    finish(true)
+                }, failure = {
+                    finish(false)
+                })
             } catch (ex: Exception) {
-                Log.i("teste", ex.toString())
                 finish(false)
             }
-//            finish()
         }
     }
 

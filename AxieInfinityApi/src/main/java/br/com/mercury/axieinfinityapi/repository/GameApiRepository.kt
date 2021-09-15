@@ -11,10 +11,12 @@ interface GameApiRepository {
         failure: (throwable: Throwable) -> Unit
     )
 
-    suspend fun getProfileBrief(): Boolean
+    suspend fun getProfileBrief(
+        success: (response: AxieAccountDb) -> Unit,
+        failure: (throwable: Throwable) -> Unit
+    )
 
     suspend fun getAxieBriefList(
-        owner: String,
         from: Int = 0,
         size: Int = 24,
         sort: String = "PriceAsc",

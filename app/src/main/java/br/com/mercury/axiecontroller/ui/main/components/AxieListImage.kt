@@ -14,9 +14,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AxieListImage(AxieList: Unit) {
+fun AxieListImage() {
     Image(
-        painter = painterResource(id = AxieList),
+        painter = painterResource(id = 0),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = Modifier

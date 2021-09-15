@@ -84,5 +84,7 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.journeyapps:zxing-android-embedded:4.2.0")
 
+    implementation("io.coil-kt:coil:1.3.2")
+    implementation("io.coil-kt:coil-compose:1.3.2")
 
 }

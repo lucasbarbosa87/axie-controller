@@ -22,9 +22,11 @@ class LoginViewModel(application: Application, private val gameApiRepository: Ga
 
         viewModelScope.launch {
             gameApiRepository.setBearerToken(content)
-            isSuccess.postValue(gameApiRepository.getProfileBrief())
+            gameApiRepository.getProfileBrief(success = {
+                isSuccess.postValue(true)
+            }, failure = {
+                message.postValue(it.localizedMessage)
+            })
         }
     }
-
-
 }

@@ -25,13 +25,19 @@ internal class AxieApiFunctions() {
         json.addProperty("operationName", "GetAxieBriefList")
         json.addProperty("query", axieBriefListQuery)
 
-        val jsonVariables = JsonObject().let {
-            it.addProperty("owner", owner)
-            it.addProperty("from", from)
-            it.addProperty("size", size)
-            it.addProperty("sort", sort)
-            it.addProperty("auctionType", auctionType)
+        val jsonVariables = JsonObject().apply {
+            this.addProperty("owner", owner)
+            this.addProperty("from", from)
+            this.addProperty("size", size)
+            this.addProperty("sort", sort)
+            this.addProperty("AuctionType", auctionType)
         }
+//        jsonVariables.addProperty("owner", owner)
+//        jsonVariables.addProperty("from", from)
+//        jsonVariables.addProperty("size", size)
+//        jsonVariables.addProperty("sort", sort)
+//        jsonVariables.addProperty("auctionType", auctionType)
+
         json.addProperty("variables", jsonVariables.toString())
         return json
     }

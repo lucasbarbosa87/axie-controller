@@ -5,7 +5,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "My App"
-include (":app")
-include(":AxieInfinityApi")
-include(":CoinMarketApi")
+rootProject.name = "Axie Controller"
+include (":app",":AxieInfinityApi",":CoinMarketApi")
+//include(":AxieInfinityApi")
+//include(":CoinMarketApi")
