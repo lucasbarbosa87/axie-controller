@@ -46,10 +46,5 @@ dependencies {
     roomDb()
     implementation(kotlin("reflect"))
     implementation("org.drewcarlson:coingecko:0.2.2")
-
-
-    val ktor_version = "1.6.3"
-
-    implementation("io.ktor:ktor-client-okhttp:$ktor_version")
-    implementation("io.ktor:ktor-client-android:$ktor_version")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 }

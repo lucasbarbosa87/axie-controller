@@ -12,6 +12,6 @@ interface SlpCoinDao {
     suspend fun insertOrUpdateSlpCoin(slpCoinDb: SlpCoinDb)
 
 
-    @Query("select * from slpcoin limit 1")
+    @Query("select * from SlpCoin limit 1")
     suspend fun getSlpCoin(): SlpCoinDb
 }

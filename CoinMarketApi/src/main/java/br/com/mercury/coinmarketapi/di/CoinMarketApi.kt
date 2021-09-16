@@ -2,7 +2,9 @@ package br.com.mercury.coinmarketapi.di
 
 import androidx.room.Room
 import br.com.mercury.coinmarketapi.data.local.CoinMarketDatabase
-import br.com.mercury.coinmarketapi.network.CoinMarketApi
+import br.com.mercury.coinmarketapi.data.network.CoinMarketApi
+import br.com.mercury.coinmarketapi.data.preferences.CoinMarketPreferences
+import br.com.mercury.coinmarketapi.data.preferences.CoinMarketPreferencesImpl
 import br.com.mercury.coinmarketapi.repository.CoinMarketRepository
 import br.com.mercury.coinmarketapi.repository.CoinMarketRepositoryImpl
 import br.com.mercury.coinmarketapi.utils.dbName
@@ -20,7 +22,8 @@ val coinMarketApi = module {
         Room.databaseBuilder(androidContext(), CoinMarketDatabase::class.java, dbName)
             .build()
     }
-    factory<CoinMarketRepository> { CoinMarketRepositoryImpl(get(), get(), get()) }
+    factory<CoinMarketRepository> { CoinMarketRepositoryImpl(get(), get(), get(), get()) }
+    single<CoinMarketPreferences> { CoinMarketPreferencesImpl(androidContext()) }
 }
 
 internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {

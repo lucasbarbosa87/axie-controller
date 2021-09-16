@@ -1,4 +1,4 @@
-package br.com.mercury.coinmarketapi.network
+package br.com.mercury.coinmarketapi.data.network
 
 import br.com.mercury.coinmarketapi.data.network.model.DolarResponse
 import com.google.gson.JsonObject
