@@ -3,7 +3,7 @@ package br.com.mercury.axieinfinityapi.data.network
 import com.google.gson.annotations.SerializedName
 
 data class AxieBriefListResponse(
-    @SerializedName("axie") val axiesData: AxieListData
+    @SerializedName("axies") val axiesData: AxieListData
 )
 
 data class AxieListData(
