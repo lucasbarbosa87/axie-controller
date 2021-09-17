@@ -10,7 +10,7 @@ data class AxieType(
 ) {
 
     private enum class AxieTypes {
-        Aqua,
+        Aquatic,
         Beast,
         Bird,
         Bug,
@@ -24,7 +24,7 @@ data class AxieType(
     companion object {
         fun builder(type: String): AxieType {
             return when (AxieTypes.valueOf(type)) {
-                AxieTypes.Aqua -> AxieType(R.string.axie_type_aqua, R.drawable.aqua)
+                AxieTypes.Aquatic -> AxieType(R.string.axie_type_aqua, R.drawable.aqua)
                 AxieTypes.Beast -> AxieType(R.string.axie_type_beast, R.drawable.beast)
                 AxieTypes.Bird -> AxieType(R.string.axie_type_bird, R.drawable.bird)
                 AxieTypes.Bug -> AxieType(R.string.axie_type_bug, R.drawable.bug)
