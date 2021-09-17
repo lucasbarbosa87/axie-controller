@@ -60,7 +60,7 @@ fun CardListItemComponent(axie: AxieData) {
                 modifier = Modifier
                     .padding(start = 16.dp, bottom = 4.dp)
                     .clip(RoundedCornerShape(8.dp))
-                    .background(Color(0xFF6CC000))
+                    .background(AxieType.builder(axie.axieClass).color)
             )
             Row(modifier = Modifier.padding(start = 16.dp, bottom = 0.dp)) {
                 AxieIconImage(AxieType.builder(axie.axieClass))
@@ -106,7 +106,7 @@ fun AxieIconImage(type: AxieType) {
     Image(
         painter = painterResource(type.icon),  // material icon
         contentDescription = "",
-        colorFilter = ColorFilter.tint(Color(0xFF6CC000)),
+        colorFilter = ColorFilter.tint(type.color),
         contentScale = ContentScale.Fit,
         modifier = Modifier
             .size(40.dp)
