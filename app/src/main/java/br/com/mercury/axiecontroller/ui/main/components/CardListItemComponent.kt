@@ -24,8 +24,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension.Companion.value
 import br.com.mercury.axiecontroller.R
+import br.com.mercury.axiecontroller.ui.theme.ColorBreedText
+import br.com.mercury.axiecontroller.ui.theme.ColorCardBackground
 import br.com.mercury.axiecontroller.utils.AxieType
 import br.com.mercury.axieinfinityapi.data.network.AxieData
 import coil.compose.rememberImagePainter
@@ -36,7 +39,7 @@ fun CardListItemComponent(axie: AxieData) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(fraction = 0.8f)
+            .fillMaxHeight(fraction = 0.6f)
             .wrapContentWidth(Alignment.CenterHorizontally)
             .padding(
                 top = 4.dp,
@@ -44,7 +47,7 @@ fun CardListItemComponent(axie: AxieData) {
                 bottom = 4.dp,
                 start = 8.dp
             ),
-        backgroundColor = Color(0xFF282B39),
+        backgroundColor = ColorCardBackground,
         elevation = 8.dp
     ) {
         Column(
@@ -62,7 +65,7 @@ fun CardListItemComponent(axie: AxieData) {
                     .clip(RoundedCornerShape(8.dp))
                     .background(AxieType.builder(axie.axieClass).color)
             )
-            Row(modifier = Modifier.padding(start = 16.dp, top=8.dp)) {
+            Row(modifier = Modifier.padding(start = 16.dp, top = 8.dp)) {
                 AxieIconImage(AxieType.builder(axie.axieClass))
                 Text(
                     text = axie.name,
@@ -74,7 +77,7 @@ fun CardListItemComponent(axie: AxieData) {
             }
             Text(
                 text = "Breed count: ${axie.breedCount}",
-                color = Color(0xFF6B7185),
+                color = ColorBreedText,
                 modifier = Modifier
                     .padding(start = 16.dp)
             )
@@ -92,10 +95,10 @@ fun CardListItemComponent(axie: AxieData) {
 @Preview
 @Composable
 fun Preview() {
-    CardListItemComponent(AxieDummyData())
+    CardListItemComponent(dummyData)
 }
 
-fun AxieDummyData() =
+val dummyData =
     AxieData(
         name = "Axie #3390806",
         axieClass = "Plant",
@@ -105,15 +108,20 @@ fun AxieDummyData() =
 
 @Composable
 fun AxieIconImage(type: AxieType) {
-    Image(
-        painter = painterResource(type.icon),  // material icon
-        contentDescription = "",
-        colorFilter = ColorFilter.tint(type.color),
-        contentScale = ContentScale.Fit,
-        modifier = Modifier
-            .size(40.dp)
-            .padding(0.dp)
-    )
+    ConstraintLayout {
+        val image = createRef()
+        Image(
+            painter = painterResource(type.icon),  // material icon
+            contentDescription = "",
+            colorFilter = ColorFilter.tint(type.color),
+            modifier = Modifier.constrainAs(image) {
+                top.linkTo(parent.top)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                bottom.linkTo(parent.bottom)
+            }
+        )
+    }
 }
 
 @Preview

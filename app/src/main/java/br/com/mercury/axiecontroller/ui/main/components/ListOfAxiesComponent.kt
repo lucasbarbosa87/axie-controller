@@ -33,8 +33,6 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ListOfAxiesComponent(axieList: SnapshotStateList<AxieData>) {
-    //val list = axieList.map { it.toString() }
-    //println(list)
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
