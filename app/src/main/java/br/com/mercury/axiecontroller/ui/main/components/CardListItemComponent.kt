@@ -69,14 +69,16 @@ fun CardListItemComponent(axie: AxieData) {
                 AxieIconImage(AxieType.builder(axie.axieClass))
                 Text(
                     text = axie.name,
+                    style = MaterialTheme.typography.h5,
                     color = Color.White,
                     modifier = Modifier
-                        .padding(top = 4.dp, bottom = 0.dp)
+                        .padding(start = 4.dp, bottom = 0.dp)
                 )
 
             }
             Text(
                 text = "Breed count: ${axie.breedCount}",
+                style = MaterialTheme.typography.subtitle1,
                 color = ColorBreedText,
                 modifier = Modifier
                     .padding(start = 16.dp)
@@ -101,33 +103,30 @@ fun Preview() {
 val dummyData =
     AxieData(
         name = "Axie #3390806",
-        axieClass = "Plant",
+        axieClass = "Mech",
         image = "https://storage.googleapis.com/assets.axieinfinity.com/axies/3390806/axie/axie-full-transparent.png",
         breedCount = "3"
     )
 
 @Composable
 fun AxieIconImage(type: AxieType) {
-    ConstraintLayout {
-        val image = createRef()
+    Column(modifier = Modifier.padding(top = 4.dp)) {
         Image(
             painter = painterResource(type.icon),  // material icon
             contentDescription = "",
             colorFilter = ColorFilter.tint(type.color),
-            modifier = Modifier.constrainAs(image) {
-                top.linkTo(parent.top)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-                bottom.linkTo(parent.bottom)
-            }
-        )
+            contentScale = ContentScale.Fit,
+
+            )
     }
+
 }
+
 
 @Preview
 @Composable
 fun IconImagePreview() {
     MaterialTheme {
-        AxieIconImage(AxieType.builder("Plant"))
+        AxieIconImage(AxieType.builder("Aquatic"))
     }
 }

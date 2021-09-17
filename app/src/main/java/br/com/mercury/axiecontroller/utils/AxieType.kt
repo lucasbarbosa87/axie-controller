@@ -3,8 +3,6 @@ package br.com.mercury.axiecontroller.utils
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.material.Colors
-import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.graphics.Color
 import br.com.mercury.axiecontroller.R
 import br.com.mercury.axiecontroller.ui.theme.*
