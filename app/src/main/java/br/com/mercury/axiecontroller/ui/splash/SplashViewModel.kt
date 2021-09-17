@@ -1,13 +1,13 @@
 package br.com.mercury.axiecontroller.ui.splash
 
 import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.mercury.axiecontroller.ui.base.BaseViewModel
+import br.com.mercury.axiecontroller.utils.getCurrentCurrency
 import br.com.mercury.axieinfinityapi.repository.GameApiRepository
 import br.com.mercury.coinmarketapi.repository.CoinMarketRepository
 import kotlinx.coroutines.launch
+import java.util.*
 
 class SplashViewModel(
     application: Application,
@@ -15,15 +15,15 @@ class SplashViewModel(
     private val axieRepository: GameApiRepository
 ) : BaseViewModel(application) {
 
-    fun initialize(finish: (hasProfile: Boolean) -> Unit) {
+    fun initialize(finish: (finish: Boolean) -> Unit) {
         viewModelScope.launch {
             try {
                 coinMarketRepository.getAccountInfoNetwork()
                 axieRepository.setBearerToken(
                     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjIxOTQyODMsImFjdGl2YXRlZCI6dHJ1ZSwicm9uaW5BZGRyZXNzIjoiMHg1N2I4NmI2OTUzZjA2MjY2ODQ1OTYxYmMzZWRkOTc0OTAyZjIwNGZjIiwiZXRoQWRkcmVzcyI6bnVsbCwiaWF0IjoxNjMxMTQ0OTE3LCJleHAiOjE2MzE3NDk3MTcsImlzcyI6IkF4aWVJbmZpbml0eSJ9.3rDLIIn4ekMNBPgQgEDbPEkNAbeV596CsqX-wfpE8VM"
                 )
-                coinMarketRepository.getSmoothLovePotionValueNetwork()
-                coinMarketRepository.getDollarValueNetwork()
+//                coinMarketRepository.getSmoothLovePotionValueNetwork()
+                coinMarketRepository.getCurrencyValueNetWork(getCurrentCurrency().currencyCode)
                 axieRepository.getProfileBrief(success = {
                     finish(true)
                 }, failure = {

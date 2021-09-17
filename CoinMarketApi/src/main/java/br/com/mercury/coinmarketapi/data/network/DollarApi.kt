@@ -8,6 +8,6 @@ import retrofit2.http.POST
 internal interface DollarApi {
 
     @POST("rate-history/api/1")
-    fun getDolarValue(@Body bodyJson: JsonObject): DolarResponse
+    suspend fun getDolarValue(@Body bodyJson: JsonObject): DolarResponse
 
 }

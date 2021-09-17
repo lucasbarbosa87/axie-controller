@@ -1,12 +1,13 @@
 package br.com.mercury.coinmarketapi.repository
 
+import android.util.Log
 import br.com.mercury.coinmarketapi.data.local.CoinMarketDatabase
 import br.com.mercury.coinmarketapi.data.local.model.AccountDb
 import br.com.mercury.coinmarketapi.data.local.model.SlpCoinDb
 import br.com.mercury.coinmarketapi.data.network.CoinMarketApi
 import br.com.mercury.coinmarketapi.data.network.DollarApi
 import br.com.mercury.coinmarketapi.data.preferences.CoinMarketPreferences
-import br.com.mercury.coinmarketapi.di.provideRetrofit
+import br.com.mercury.coinmarketapi.di.dollarApiProvider
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -19,7 +20,7 @@ class CoinMarketRepositoryImpl(
     okHttpClient: OkHttpClient
 ) : CoinMarketRepository {
 
-    private val dollarApi = provideRetrofit(okHttpClient).create(DollarApi::class.java)
+    private val dollarApi = dollarApiProvider(okHttpClient).create(DollarApi::class.java)
 
     override suspend fun getAccountInfoNetwork() {
         val accountInfo = coinMarketApi.getAccountInfo().accountInfo
@@ -43,16 +44,21 @@ class CoinMarketRepositoryImpl(
         }
     }
 
-    override suspend fun getDollarValueNetwork() {
-        val jsonBody = JsonObject()
-        jsonBody.addProperty("method", "spotRateHistory")
-        val jsonData = JsonObject()
-        jsonData.addProperty("base", "USD")
-        jsonData.addProperty("base", "BRL")
-        jsonData.addProperty("period", "week")
-        jsonBody.addProperty("data", jsonData.toString())
-        val dollarResult = dollarApi.getDolarValue(jsonBody).data
-        preferences.saveDollarValue(dollarResult.currentInterbankRate)
+    override suspend fun getCurrencyValueNetWork(termName: String) {
+        try {
+            val jsonBody = JsonObject()
+            jsonBody.addProperty("method", "spotRateHistory")
+            val jsonData = JsonObject()
+            jsonData.addProperty("base", "USD")
+            jsonData.addProperty("term", termName)
+            jsonData.addProperty("period", "week")
+            jsonBody.add("data", jsonData)
+            val result = dollarApi.getDolarValue(jsonBody)
+            val dollarResult = result.data
+            preferences.saveDollarValue(dollarResult.currentInterbankRate)
+        } catch (ex: Exception) {
+            Log.e("erro", ex.toString())
+        }
     }
 
     override suspend fun getDollarValue(): Double = preferences.getDollarValue()

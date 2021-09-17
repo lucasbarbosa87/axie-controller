@@ -14,3 +14,7 @@ fun formatValue(value: Double): String {
     teste.maximumFractionDigits = 2
     return teste.format(value).replace(currentSymble(), "")
 }
+
+fun getCurrentLocation(): Locale = Locale.getDefault()
+
+fun getCurrentCurrency(): Currency = Currency.getInstance(getCurrentLocation())

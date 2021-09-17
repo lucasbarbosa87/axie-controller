@@ -8,5 +8,5 @@ interface CoinMarketRepository {
     suspend fun overRideInformation()
     suspend fun getSmoothLovePotionValueLocal(): SlpCoinDb
     suspend fun getDollarValue(): Double
-    suspend fun getDollarValueNetwork()
+    suspend fun getCurrencyValueNetWork(termName: String)
 }
