@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import br.com.mercury.axiecontroller.ui.base.BaseActivity
 import br.com.mercury.axiecontroller.ui.main.components.AccountValueComponent
 import br.com.mercury.axiecontroller.ui.main.components.ListOfAxiesComponent
+import br.com.mercury.axiecontroller.ui.main.components.MainScreenComponent
 import br.com.mercury.axiecontroller.ui.theme.AxieControllerTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,16 +26,7 @@ class MainActivity : BaseActivity() {
         setContent {
             AxieControllerTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(colors.background)
-                    ) {
-                        AccountValueComponent(false, viewModel.profileValue)
-                        Column(Modifier.fillMaxHeight()) {
-                            ListOfAxiesComponent(viewModel.axiesList)
-                        }
-                    }
+                    MainScreenComponent(viewModel.profileValue, viewModel.axiesList)
                 }
             }
         }

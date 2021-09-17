@@ -8,9 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import br.com.mercury.axiecontroller.ui.base.BaseViewModel
 import br.com.mercury.axieinfinityapi.data.network.AxieData
-import br.com.mercury.axieinfinityapi.data.network.AxieListData
 import br.com.mercury.axieinfinityapi.repository.GameApiRepository
-import br.com.mercury.axieinfinityapi.utils.objectToJson
 import br.com.mercury.coinmarketapi.repository.CoinMarketRepository
 import kotlinx.coroutines.launch
 
@@ -21,7 +19,7 @@ class MainActivityViewModel(
 ) :
     BaseViewModel(application) {
 
-    val profileValue = mutableStateOf(AccountValueView(0.0, 0, 0.0))
+    val profileValue = mutableStateOf(AccountValueView(0.0, 0, 0.0, "Lucas"))
     val axiesList = mutableStateListOf<AxieData>()
     val message = MutableLiveData<String>()
     val error = MutableLiveData<Throwable>()
@@ -29,15 +27,22 @@ class MainActivityViewModel(
     fun getProfileValue() {
         viewModelScope.launch {
             try {
-                gameApiRepository.getEthValue().let { ethValue ->
-                    coinApiRepository.getSmoothLovePotionValueLocal().let { slpCoin ->
-                        gameApiRepository.getAccountSlp(success = {
-                            val accountValue =
-                                AccountValueView(slpCoin.price, it.totalItem, ethValue)
-                            profileValue.value = accountValue
-                        }, failure = {
-                            error.postValue(it)
-                        })
+                gameApiRepository.getProfile().let { profile ->
+                    gameApiRepository.getEthValue().let { ethValue ->
+                        coinApiRepository.getSmoothLovePotionValueLocal().let { slpCoin ->
+                            gameApiRepository.getAccountSlp(success = {
+                                val accountValue =
+                                    AccountValueView(
+                                        slpCoin.price,
+                                        it.totalItem,
+                                        ethValue,
+                                        profile.name
+                                    )
+                                profileValue.value = accountValue
+                            }, failure = {
+                                error.postValue(it)
+                            })
+                        }
                     }
                 }
             } catch (ex: Exception) {
