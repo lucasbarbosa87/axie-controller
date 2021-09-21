@@ -9,6 +9,9 @@ plugins {
     id("com.google.firebase.crashlytics")
 }
 
+val appVersionName = "0.1.0"
+
+
 android {
     compileSdk = 31
     buildToolsVersion = "30.0.3"
@@ -17,8 +20,8 @@ android {
         applicationId = "br.com.mercury.axiecontroller"
         minSdk = 21
         targetSdk = 31
-        versionCode = 1
-        versionName = "1.0"
+        versionName = appVersionName
+        versionCode = getAppVersionCode(appVersionName)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
