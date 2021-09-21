@@ -59,7 +59,6 @@ class GameApiRepositoryImpl(
         try {
             val bodyJson =
                 apiFunctions.axieBriefList(getProfile().roninAdress, from, size, sort, auctionType)
-
             val result = clientAxie.graphqlPost(bodyJson)
             val data = jsonToObject<AxieBriefListResponse>(result.data.toString())
             return data.axiesData

@@ -11,6 +11,7 @@ import br.com.mercury.axieinfinityapi.data.network.AxieData
 import br.com.mercury.axieinfinityapi.repository.GameApiRepository
 import br.com.mercury.coinmarketapi.repository.CoinMarketRepository
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MainActivityViewModel(
     application: Application,
@@ -27,6 +28,7 @@ class MainActivityViewModel(
     fun getProfileValue() {
         viewModelScope.launch {
             try {
+                val dollar = runBlocking { coinApiRepository.getDollarValue() }
                 gameApiRepository.getProfile().let { profile ->
                     gameApiRepository.getEthValue().let { ethValue ->
                         coinApiRepository.getSmoothLovePotionValueLocal().let { slpCoin ->
@@ -35,7 +37,7 @@ class MainActivityViewModel(
                                     AccountValueView(
                                         slpCoin.price,
                                         it.totalItem,
-                                        ethValue,
+                                        ethValue * dollar,
                                         profile.name
                                     )
                                 profileValue.value = accountValue

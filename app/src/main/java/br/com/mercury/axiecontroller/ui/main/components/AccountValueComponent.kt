@@ -74,7 +74,7 @@ fun AccountValueComponent(
 
             //region Income
             HideableTextField(
-                text = profileValue.value.ethValue.toString(),
+                text = formatValue(profileValue.value.ethValue),
                 hide = hideSensitiveData,
                 style = MaterialTheme.typography.h5,
                 modifier = Modifier.constrainAs(moneyValueIncome) {
@@ -108,7 +108,7 @@ fun AccountValueComponent(
                 contentDescription = "",
                 Modifier.constrainAs(slpIcon) {
                     top.linkTo(moneyValueExpense.top)
-                    end.linkTo(moneyValueExpense.start)
+                    end.linkTo(moneyValueExpense.start, margin = 8.dp)
                     bottom.linkTo(moneyValueExpense.bottom)
                 }
             )

@@ -19,10 +19,10 @@ class SplashViewModel(
         viewModelScope.launch {
             try {
                 coinMarketRepository.getAccountInfoNetwork()
-                axieRepository.setBearerToken(
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjIxOTQyODMsImFjdGl2YXRlZCI6dHJ1ZSwicm9uaW5BZGRyZXNzIjoiMHg1N2I4NmI2OTUzZjA2MjY2ODQ1OTYxYmMzZWRkOTc0OTAyZjIwNGZjIiwiZXRoQWRkcmVzcyI6bnVsbCwiaWF0IjoxNjMxNzk4MzI2LCJleHAiOjE2MzI0MDMxMjYsImlzcyI6IkF4aWVJbmZpbml0eSJ9.G10SAZa-2Er1mu9jF4aTRzvRl_8ooBqyEz-zzBYT0kg"
-                )
-//                coinMarketRepository.getSmoothLovePotionValueNetwork()
+//                axieRepository.setBearerToken(
+//                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjIxOTQyODMsImFjdGl2YXRlZCI6dHJ1ZSwicm9uaW5BZGRyZXNzIjoiMHg1N2I4NmI2OTUzZjA2MjY2ODQ1OTYxYmMzZWRkOTc0OTAyZjIwNGZjIiwiZXRoQWRkcmVzcyI6bnVsbCwiaWF0IjoxNjMxNzk4MzI2LCJleHAiOjE2MzI0MDMxMjYsImlzcyI6IkF4aWVJbmZpbml0eSJ9.G10SAZa-2Er1mu9jF4aTRzvRl_8ooBqyEz-zzBYT0kg"
+//                )
+                coinMarketRepository.getSmoothLovePotionValueNetwork()
                 coinMarketRepository.getCurrencyValueNetWork(getCurrentCurrency().currencyCode)
                 axieRepository.getProfileBrief(success = {
                     finish(true)
