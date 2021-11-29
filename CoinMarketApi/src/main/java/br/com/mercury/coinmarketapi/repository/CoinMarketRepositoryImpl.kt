@@ -7,7 +7,7 @@ import br.com.mercury.coinmarketapi.data.local.model.SlpCoinDb
 import br.com.mercury.coinmarketapi.data.network.CoinMarketApi
 import br.com.mercury.coinmarketapi.data.network.DollarApi
 import br.com.mercury.coinmarketapi.data.preferences.CoinMarketPreferences
-import br.com.mercury.coinmarketapi.di.dollarApiProvider
+import br.com.mercury.coinmarketapi.utils.dollarApiProvider
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

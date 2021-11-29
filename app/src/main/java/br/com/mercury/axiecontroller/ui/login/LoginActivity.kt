@@ -4,17 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import br.com.mercury.axiecontroller.ui.base.BaseActivity
 import br.com.mercury.axiecontroller.ui.main.MainActivity
 import br.com.mercury.axiecontroller.ui.theme.AxieControllerTheme
 import com.google.zxing.integration.android.IntentIntegrator
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : BaseActivity() {
 
-    private val viewModel: LoginViewModel by viewModel()
+    private val viewModel: LoginViewModel by viewModels()
 
     private val qrCOdeResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {

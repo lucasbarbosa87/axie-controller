@@ -10,10 +10,13 @@ import br.com.mercury.axiecontroller.ui.base.BaseViewModel
 import br.com.mercury.axieinfinityapi.data.network.AxieData
 import br.com.mercury.axieinfinityapi.repository.GameApiRepository
 import br.com.mercury.coinmarketapi.repository.CoinMarketRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
-class MainActivityViewModel(
+@HiltViewModel
+class MainActivityViewModel @Inject constructor(
     application: Application,
     private val gameApiRepository: GameApiRepository,
     private val coinApiRepository: CoinMarketRepository

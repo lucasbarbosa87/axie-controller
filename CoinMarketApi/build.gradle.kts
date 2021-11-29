@@ -42,7 +42,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.30")
     retrofit(ConfigurationType.Api)
     stetho(ConfigurationType.Api)
-    koin()
+    hilt(ConfigurationType.Api)
     roomDb()
     implementation(kotlin("reflect"))
     implementation("org.drewcarlson:coingecko:0.2.2")

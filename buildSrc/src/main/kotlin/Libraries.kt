@@ -64,13 +64,28 @@ object Libraries {
     const val stethoInterceptorOkHttp = "com.facebook.stetho:stetho:${Versions.stethoVersion}"
     const val stethoInterceptor = "com.facebook.stetho:stetho-okhttp3:${Versions.stethoVersion}"
 
-    const val constraintLayoutCompose = "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
-    const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.compose}"
-    const val materialIconsCore = "androidx.compose.material:material-icons-core:${Versions.compose}"
+    const val constraintLayoutCompose =
+        "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
+    const val materialIconsExtended =
+        "androidx.compose.material:material-icons-extended:${Versions.compose}"
+    const val materialIconsCore =
+        "androidx.compose.material:material-icons-core:${Versions.compose}"
+
+    //Hilt
+    const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
+    const val hiltAndroidCompiler =
+        "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
+    const val hiltGradlePlugin =
+        "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltVersion}"
+    const val hiltCompose = "androidx.hilt:hilt-navigation-compose:${Versions.hiltComposeVersion}"
+    const val hiltAndroidGoogle = "androidx.hilt:hilt:1.0.0"
+    const val hiltAndroidXCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltVersion}"
 
 }
 
 object Versions {
+    const val hiltComposeVersion = "1.0.0-alpha03"
+    const val hiltVersion = "2.38.1"
     const val dataBindingValidator = "2.0.0"
     const val roomDb = "2.3.0"
     const val koin = "2.2.3"

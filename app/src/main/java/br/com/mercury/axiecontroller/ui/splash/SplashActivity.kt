@@ -3,17 +3,19 @@ package br.com.mercury.axiecontroller.ui.splash
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import br.com.mercury.axiecontroller.ui.base.BaseActivity
 import br.com.mercury.axiecontroller.ui.login.LoginActivity
 import br.com.mercury.axiecontroller.ui.main.MainActivity
 import br.com.mercury.axiecontroller.ui.theme.AxieControllerTheme
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashActivity : BaseActivity() {
 
-    private val viewModel: SplashViewModel by viewModel()
+    private val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

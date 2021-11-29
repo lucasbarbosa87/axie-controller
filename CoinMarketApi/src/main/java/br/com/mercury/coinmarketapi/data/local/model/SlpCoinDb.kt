@@ -3,7 +3,7 @@ package br.com.mercury.coinmarketapi.data.local.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import br.com.mercury.coinmarketapi.model.SlpCoin
+import br.com.mercury.coinmarketapi.data.network.model.SlpCoin
 
 @Entity(tableName = "SlpCoin")
 data class SlpCoinDb(

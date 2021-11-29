@@ -1,7 +1,7 @@
 package br.com.mercury.coinmarketapi.data.network
 
 import br.com.mercury.coinmarketapi.data.network.model.Coin
-import br.com.mercury.coinmarketapi.model.Account
+import br.com.mercury.coinmarketapi.data.network.model.Account
 import br.com.mercury.coinmarketapi.utils.accountKey
 import retrofit2.http.*
 

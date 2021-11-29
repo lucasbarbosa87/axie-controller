@@ -3,9 +3,8 @@ package br.com.mercury.coinmarketapi.data.local.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import br.com.mercury.coinmarketapi.model.AccountInfo
+import br.com.mercury.coinmarketapi.data.network.model.AccountInfo
 import br.com.mercury.coinmarketapi.utils.accountKey
-import java.util.*
 
 @Entity(tableName = "Account")
 data class AccountDb(

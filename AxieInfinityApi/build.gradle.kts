@@ -42,7 +42,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     retrofit(ConfigurationType.Api)
     stetho(ConfigurationType.Api)
-    koin()
+    hilt(ConfigurationType.Api)
     roomDb()
     implementation("com.facebook.stetho:stetho:1.5.1")
     implementation("com.facebook.stetho:stetho-okhttp3:1.5.1")

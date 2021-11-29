@@ -1,0 +1,35 @@
+image: androidsdk/android-30
+
+pipelines:
+  branches:
+    master:
+      - parallel:           
+        - step:
+            name: Gradle Permission
+            script:
+             - chmod +x ./gradlew
+        - step:
+            name: Android Debug Application
+            caches:
+              - gradle
+            script:
+              - chmod +x ./gradlew
+              - ./gradlew assembleDebug
+            artifacts:
+              - app/build/outputs/**
+        - step:
+            name: Lint
+            caches:
+              - gradle
+            script:
+              - chmod +x ./gradlew
+              - ./gradlew lint
+            artifacts:
+              - app/build/reports/**
+        - step:
+            name: Unit Tests
+            caches:
+              - gradle
+            script:
+              - chmod +x ./gradlew
+              - ./gradlew testDebugUnitTest    

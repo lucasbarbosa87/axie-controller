@@ -8,12 +8,12 @@ import br.com.mercury.axieinfinityapi.data.network.AxieListData
 import br.com.mercury.axieinfinityapi.data.network.AxieProfileBriefResponse
 import br.com.mercury.axieinfinityapi.data.network.EthExchangeRateResponse
 import br.com.mercury.axieinfinityapi.data.preferences.AxiePreferences
-import br.com.mercury.axieinfinityapi.di.axieApiProvider
-import br.com.mercury.axieinfinityapi.di.gameApiProvider
 import br.com.mercury.axieinfinityapi.model.ItemModel
 import br.com.mercury.axieinfinityapi.model.network.AxieApi
 import br.com.mercury.axieinfinityapi.model.network.AxieApiFunctions
 import br.com.mercury.axieinfinityapi.model.network.GameApi
+import br.com.mercury.axieinfinityapi.utils.axieApiProvider
+import br.com.mercury.axieinfinityapi.utils.gameApiProvider
 import br.com.mercury.axieinfinityapi.utils.jsonToObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking

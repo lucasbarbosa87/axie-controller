@@ -33,6 +33,7 @@ fun DependencyHandler.appCenter() {
 fun DependencyHandler.retrofit(configurationType: ConfigurationType) {
     add(configurationType.value, Libraries.retrofit)
     add(configurationType.value, Libraries.retrofitConverterGson)
+    add("api", "com.squareup.okhttp3:okhttp:4.9.1")
 }
 
 fun DependencyHandler.paging(configurationType: ConfigurationType) {
@@ -70,6 +71,16 @@ fun DependencyHandler.compose(configurationType: ConfigurationType) {
     add(configurationType.value, Libraries.constraintLayoutCompose)
     add(configurationType.value, Libraries.materialIconsCore)
     add(configurationType.value, Libraries.materialIconsExtended)
+}
+
+fun DependencyHandler.hilt(configurationType: ConfigurationType, withCompose: Boolean = false) {
+    add(configurationType.value, Libraries.hiltAndroid)
+    if (withCompose) {
+        add(configurationType.value, Libraries.hiltCompose)
+    }
+//    add(configurationType.value, Libraries.hiltAndroidGoogle)
+    add("kapt", Libraries.hiltAndroidCompiler)
+//    add("kapt", Libraries.hiltAndroidXCompiler)
 }
 
 

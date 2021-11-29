@@ -2,24 +2,19 @@ package br.com.mercury.axiecontroller.ui.main
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.Surface
-import androidx.compose.ui.Modifier
 import br.com.mercury.axiecontroller.ui.base.BaseActivity
-import br.com.mercury.axiecontroller.ui.main.components.AccountValueComponent
-import br.com.mercury.axiecontroller.ui.main.components.ListOfAxiesComponent
 import br.com.mercury.axiecontroller.ui.main.components.MainScreenComponent
 import br.com.mercury.axiecontroller.ui.theme.AxieControllerTheme
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
-    private val viewModel: MainActivityViewModel by viewModel()
+    private val viewModel: MainActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

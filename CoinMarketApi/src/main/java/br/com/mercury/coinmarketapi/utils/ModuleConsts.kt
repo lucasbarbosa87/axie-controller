@@ -3,4 +3,5 @@ package br.com.mercury.coinmarketapi.utils
 
 const val dbName = "coinMarketdatabase.db"
 
-const val accountKey = "1da4fe19-dee3-49e5-b5ac-5a0913b68fce"
+//Replace to your Coin Market Key - https://coinmarketcap.com/pt-br/
+const val accountKey = "your key"

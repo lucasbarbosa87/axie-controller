@@ -7,9 +7,9 @@ plugins {
     kotlin("plugin.serialization") version "1.5.21"
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("dagger.hilt.android.plugin")
 }
 
-val appVersionName = "0.1.0"
 
 
 android {
@@ -20,8 +20,8 @@ android {
         applicationId = "br.com.mercury.axiecontroller"
         minSdk = 21
         targetSdk = 31
-        versionName = appVersionName
-        versionCode = getAppVersionCode(appVersionName)
+        versionName = AppConfig.appVersionName
+        versionCode = AppConfig.generateAppVersionCode()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -79,9 +79,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
 
     roomDb()
-    koin()
     retrofit(ConfigurationType.Implementation)
     compose(ConfigurationType.Implementation)
+    hilt(ConfigurationType.Implementation, withCompose = true)
 
     implementation(platform("com.google.firebase:firebase-bom:28.4.0"))
     implementation("com.google.firebase:firebase-crashlytics-ktx")
